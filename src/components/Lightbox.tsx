@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useCallback } from "react";
 import type { Photo } from "@/data/photos";
+import OrderPrint from "./OrderPrint";
 
 interface LightboxProps {
   photo: Photo | null;
@@ -82,27 +83,31 @@ export default function Lightbox({
         </svg>
       </button>
 
-      {/* Image + caption */}
+      {/* Image + caption + order */}
       <div
-        className="flex flex-col items-center max-w-[90vw] max-h-[90vh] animate-fade-in"
+        className="flex flex-col md:flex-row items-center md:items-start gap-8 max-w-[90vw] max-h-[90vh] animate-fade-in overflow-y-auto hide-scrollbar"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Image */}
         <Image
           src={photo.src}
           alt={photo.alt}
           width={photo.width}
           height={photo.height}
-          className="max-w-[90vw] max-h-[80vh] object-contain"
-          sizes="90vw"
+          className="max-w-[90vw] md:max-w-[60vw] max-h-[75vh] object-contain flex-shrink-0"
+          sizes="(max-width: 768px) 90vw, 60vw"
           priority
         />
-        <div className="text-center py-4 max-w-lg">
+
+        {/* Info panel */}
+        <div className="md:w-72 flex-shrink-0 pb-8 md:pb-0 md:pt-4">
           <p className="text-white/80 text-sm font-medium">{photo.alt}</p>
           {photo.description && (
             <p className="text-white/50 text-xs mt-2 leading-relaxed">
               {photo.description}
             </p>
           )}
+          <OrderPrint photo={photo} />
         </div>
       </div>
     </div>

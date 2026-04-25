@@ -128,6 +128,16 @@ export default function Navigation() {
             />
           ))}
           <Link
+            href="/prints"
+            className={`text-xs tracking-[0.15em] uppercase transition-colors ${
+              pathname === "/prints"
+                ? "text-foreground"
+                : "text-muted hover:text-foreground"
+            }`}
+          >
+            Prints
+          </Link>
+          <Link
             href="/about"
             className={`text-xs tracking-[0.15em] uppercase transition-colors ${
               pathname === "/about"
@@ -137,11 +147,26 @@ export default function Navigation() {
           >
             About
           </Link>
+          {/* Cart */}
+          <button className="snipcart-checkout text-muted hover:text-foreground transition-colors relative">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
+            </svg>
+            <span className="snipcart-items-count absolute -top-1.5 -right-2 bg-foreground text-background text-[9px] w-4 h-4 rounded-full flex items-center justify-center" />
+          </button>
         </div>
 
+        {/* Cart + Mobile hamburger */}
+        <div className="flex md:hidden items-center gap-4">
+          <button className="snipcart-checkout text-muted hover:text-foreground transition-colors relative">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
+            </svg>
+            <span className="snipcart-items-count absolute -top-1.5 -right-2 bg-foreground text-background text-[9px] w-4 h-4 rounded-full flex items-center justify-center" />
+          </button>
         {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="flex flex-col gap-1.5 p-2"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -155,6 +180,7 @@ export default function Navigation() {
             className={`block w-5 h-px bg-foreground transition-transform ${menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""}`}
           />
         </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -218,6 +244,13 @@ export default function Navigation() {
               );
             })}
 
+            <Link
+              href="/prints"
+              onClick={() => setMenuOpen(false)}
+              className="text-xs tracking-[0.15em] uppercase py-2"
+            >
+              Prints
+            </Link>
             <Link
               href="/about"
               onClick={() => setMenuOpen(false)}

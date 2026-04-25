@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import "./globals.css";
@@ -20,6 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geist.variable} h-full`}>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css"
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans antialiased">
         <Navigation />
         <main className="flex-1 pt-16">{children}</main>
@@ -29,6 +36,19 @@ export default function RootLayout({
             <p>All rights reserved</p>
           </div>
         </footer>
+
+        {/* Snipcart — replace data-api-key with your key from snipcart.com/dashboard */}
+        <div
+          hidden
+          id="snipcart"
+          data-api-key={process.env.NEXT_PUBLIC_SNIPCART_API_KEY || "YOUR_SNIPCART_PUBLIC_API_KEY"}
+          data-config-modal-style="side"
+          data-currency="usd"
+        />
+        <Script
+          src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

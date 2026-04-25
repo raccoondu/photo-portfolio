@@ -1,3 +1,15 @@
+export interface PrintOption {
+  name: string; // e.g. "8×10", "16×20", "24×36"
+  price: number; // in USD
+}
+
+export const defaultPrintOptions: PrintOption[] = [
+  { name: '8"×10"', price: 35 },
+  { name: '12"×16"', price: 55 },
+  { name: '16"×20"', price: 85 },
+  { name: '24"×36"', price: 150 },
+];
+
 export interface Photo {
   id: string;
   src: string;
@@ -6,6 +18,8 @@ export interface Photo {
   location: string; // slug of the sub-location (e.g. "japan")
   width: number;
   height: number;
+  printable?: boolean; // set to false to disable print ordering for this photo
+  printOptions?: PrintOption[]; // override default print options per photo
 }
 
 export interface SubLocation {
