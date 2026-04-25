@@ -18,7 +18,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 text-center text-white animate-fade-in">
           <h1 className="text-4xl md:text-7xl font-light tracking-[0.2em] uppercase mb-4">
-            Roma Shoot Repeat
+            Roam Shoot Repeat
           </h1>
           <p className="text-sm md:text-base tracking-[0.3em] uppercase text-white/80">
             Photography by Location

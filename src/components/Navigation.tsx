@@ -99,7 +99,7 @@ export default function Navigation() {
           href="/"
           className="text-sm font-medium tracking-[0.2em] uppercase"
         >
-          Roma Shoot Repeat
+          Roam Shoot Repeat
         </Link>
 
         {/* Desktop nav */}

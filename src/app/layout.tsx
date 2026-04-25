@@ -9,7 +9,7 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Roma Shoot Repeat",
+  title: "Roam Shoot Repeat",
   description: "A photography portfolio organized by the places I've visited",
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({
         <main className="flex-1 pt-16">{children}</main>
         <footer className="border-t border-border py-8 px-6">
           <div className="max-w-7xl mx-auto flex justify-between items-center text-xs text-muted">
-            <p>&copy; {new Date().getFullYear()} Roma Shoot Repeat</p>
+            <p>&copy; {new Date().getFullYear()} Roam Shoot Repeat</p>
             <p>All rights reserved</p>
           </div>
         </footer>

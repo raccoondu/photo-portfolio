@@ -23,7 +23,7 @@ export async function generateMetadata({
   const region = getRegion(slug);
   if (!region) return {};
   return {
-    title: `${region.name} — Roma Shoot Repeat`,
+    title: `${region.name} — Roam Shoot Repeat`,
     description: `Photography from ${region.name}`,
   };
 }

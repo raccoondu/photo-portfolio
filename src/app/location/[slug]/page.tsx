@@ -23,7 +23,7 @@ export async function generateMetadata({
   const location = getSubLocation(slug);
   if (!location) return {};
   return {
-    title: `${location.name} — Roma Shoot Repeat`,
+    title: `${location.name} — Roam Shoot Repeat`,
     description: location.description,
   };
 }
