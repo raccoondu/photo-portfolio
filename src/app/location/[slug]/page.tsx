@@ -1,11 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { locations, getLocation, getPhotosByLocation } from "@/data/photos";
+import {
+  subLocations,
+  getSubLocation,
+  getPhotosByLocation,
+  getRegion,
+} from "@/data/photos";
 import PhotoGrid from "@/components/PhotoGrid";
 
 export function generateStaticParams() {
-  return locations.map((loc) => ({ slug: loc.slug }));
+  return subLocations.map((loc) => ({ slug: loc.slug }));
 }
 
 export async function generateMetadata({
@@ -14,10 +20,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const location = getLocation(slug);
+  const location = getSubLocation(slug);
   if (!location) return {};
   return {
-    title: `${location.name} — Photo Portfolio`,
+    title: `${location.name} — Roma Shoot Repeat`,
     description: location.description,
   };
 }
@@ -28,9 +34,10 @@ export default async function LocationPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const location = getLocation(slug);
+  const location = getSubLocation(slug);
   if (!location) notFound();
 
+  const region = getRegion(location.region);
   const photos = getPhotosByLocation(slug);
 
   return (
@@ -47,9 +54,14 @@ export default async function LocationPage({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
         <div className="relative z-10 px-6 pb-12 max-w-7xl mx-auto w-full animate-fade-in">
-          <p className="text-xs tracking-[0.3em] uppercase text-white/70 mb-2">
-            {location.country}
-          </p>
+          {region && (
+            <Link
+              href={`/region/${region.slug}`}
+              className="text-xs tracking-[0.3em] uppercase text-white/70 hover:text-white/90 transition-colors mb-2 inline-block"
+            >
+              {region.name}
+            </Link>
+          )}
           <h1 className="text-4xl md:text-6xl font-light tracking-[0.1em] uppercase text-white">
             {location.name}
           </h1>
