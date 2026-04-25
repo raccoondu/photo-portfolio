@@ -2,6 +2,7 @@ export interface Photo {
   id: string;
   src: string;
   alt: string;
+  description?: string; // 2-3 line blurb about the photo
   location: string; // slug of the sub-location (e.g. "japan")
   width: number;
   height: number;
@@ -115,9 +116,9 @@ export const subLocations: SubLocation[] = [
 // Placeholder photos — replace src paths with your actual photos
 export const photos: Photo[] = [
   // Japan
-  { id: "japan-1", src: "/photos/japan/japan-1.jpg", alt: "Shibuya crossing at night", location: "japan", width: 1600, height: 2400 },
-  { id: "japan-2", src: "/photos/japan/japan-2.jpg", alt: "Temple in morning light", location: "japan", width: 2400, height: 1600 },
-  { id: "japan-3", src: "/photos/japan/japan-3.jpg", alt: "Cherry blossoms in Ueno Park", location: "japan", width: 1600, height: 2400 },
+  { id: "japan-1", src: "/photos/japan/japan-1.jpg", alt: "Shibuya crossing at night", description: "The organized chaos of Shibuya crossing. Shot during rush hour when the rain turned the streets into mirrors.", location: "japan", width: 1600, height: 2400 },
+  { id: "japan-2", src: "/photos/japan/japan-2.jpg", alt: "Temple in morning light", description: "Early morning at Senso-ji before the crowds arrive. The incense smoke caught the first light perfectly.", location: "japan", width: 2400, height: 1600 },
+  { id: "japan-3", src: "/photos/japan/japan-3.jpg", alt: "Cherry blossoms in Ueno Park", description: "Peak sakura season in Ueno. Everyone was looking up — I pointed the camera down at the petals on the water.", location: "japan", width: 1600, height: 2400 },
   // Thailand
   { id: "thailand-1", src: "/photos/thailand/thailand-1.jpg", alt: "Wat Arun at sunset", location: "thailand", width: 2400, height: 1600 },
   { id: "thailand-2", src: "/photos/thailand/thailand-2.jpg", alt: "Floating market", location: "thailand", width: 1600, height: 2400 },

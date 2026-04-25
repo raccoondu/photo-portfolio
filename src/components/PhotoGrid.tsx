@@ -25,29 +25,36 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
     setLightboxIndex(lightboxIndex === photos.length - 1 ? 0 : lightboxIndex + 1);
   };
 
-  // Split photos into columns for masonry layout
-  const columns = [[], [], []] as Photo[][];
-  photos.forEach((photo, i) => {
-    columns[i % 3].push(photo);
-  });
-
   return (
     <>
       <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 stagger-children">
         {photos.map((photo, index) => (
           <div
             key={photo.id}
-            className="mb-4 break-inside-avoid img-hover-zoom cursor-pointer"
+            className="mb-4 break-inside-avoid cursor-pointer group relative"
             onClick={() => openLightbox(index)}
           >
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              width={photo.width}
-              height={photo.height}
-              className="w-full h-auto"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
+            <div className="overflow-hidden">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={photo.width}
+                height={photo.height}
+                className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            </div>
+            {/* Hover overlay with title */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-end">
+              <div className="p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <p className="text-white text-sm font-medium">{photo.alt}</p>
+                {photo.description && (
+                  <p className="text-white/70 text-xs mt-1 line-clamp-2">
+                    {photo.description}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         ))}
       </div>

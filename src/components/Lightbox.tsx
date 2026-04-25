@@ -82,9 +82,9 @@ export default function Lightbox({
         </svg>
       </button>
 
-      {/* Image */}
+      {/* Image + caption */}
       <div
-        className="relative max-w-[90vw] max-h-[90vh] animate-fade-in"
+        className="flex flex-col items-center max-w-[90vw] max-h-[90vh] animate-fade-in"
         onClick={(e) => e.stopPropagation()}
       >
         <Image
@@ -92,13 +92,18 @@ export default function Lightbox({
           alt={photo.alt}
           width={photo.width}
           height={photo.height}
-          className="max-w-[90vw] max-h-[90vh] object-contain"
+          className="max-w-[90vw] max-h-[80vh] object-contain"
           sizes="90vw"
           priority
         />
-        <p className="absolute bottom-0 left-0 right-0 text-center text-white/60 text-sm py-4">
-          {photo.alt}
-        </p>
+        <div className="text-center py-4 max-w-lg">
+          <p className="text-white/80 text-sm font-medium">{photo.alt}</p>
+          {photo.description && (
+            <p className="text-white/50 text-xs mt-2 leading-relaxed">
+              {photo.description}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
